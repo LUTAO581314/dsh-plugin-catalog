@@ -1,0 +1,81 @@
+{
+  "name": "@lutao581314/dsh-plugin-catalog",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "在 DSH「插件 → 已安装」页加入搜索框，把已安装插件按下载时插件市场的分类分组，并把内置配置项、实验性插件分别归入「内置」「实验性」。Adds search to the DSH Plugins → Installed page, groups installed plugins by the plugin-market category recorded at download time, and files built-in config entries and experimental bundles under Built-in / Experimental.",
+  "license": "MIT",
+  "author": "LUTAO581314 <3420615279@qq.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LUTAO581314/dsh-plugin-catalog.git"
+  },
+  "homepage": "https://github.com/LUTAO581314/dsh-plugin-catalog#readme",
+  "bugs": {
+    "url": "https://github.com/LUTAO581314/dsh-plugin-catalog/issues"
+  },
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "plugin-catalog",
+    "plugins",
+    "categories",
+    "search"
+  ],
+  "scripts": {
+    "test": "node test-host.mjs && node test-client.mjs",
+    "prepublishOnly": "node test-host.mjs && node test-client.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-ui-primitives": "^0.2.1-rc.2",
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-client-ui-primitives": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.1-rc.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-plugin-manager"
+      ]
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.1-rc.2": "compatible"
+      }
+    }
+  }
+}
